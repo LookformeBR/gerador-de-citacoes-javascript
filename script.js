@@ -7,18 +7,18 @@ twitterBtn = document.querySelector(".twitter"),
 synth = speechSynthesis;
 
 function randomQuote(){
-    quoteBtn.classList.add("loading");
+    quoteBtn.classList.add("carregando ");
     quoteBtn.innerText = "Carregando Citação";
     fetch("http://api.quotable.io/random").then(response => response.json()).then(result => {
         quoteText.innerText = result.content;
         authorName.innerText = result.author;
-        quoteBtn.classList.remove("loading");
+        quoteBtn.classList.remove("carregando ");
         quoteBtn.innerText = "Nova Citaçaõ";
     });
 }
 
 speechBtn.addEventListener("click", ()=>{
-    if(!quoteBtn.classList.contains("loading")){
+    if(!quoteBtn.classList.contains("carregando ")){
         let utterance = new SpeechSynthesisUtterance(`${quoteText.innerText} by ${authorName.innerText}`);
         synth.speak(utterance);
         setInterval(()=>{
